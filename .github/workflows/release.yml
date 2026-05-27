@@ -1,0 +1,37 @@
+name: Generate KaiOS App Zip
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # আইকন ফোল্ডার ও আইকন অটোমেটিক তৈরি করার স্ক্রিপ্ট (ImageMagick দিয়ে)
+    - name: Auto-generate Icons
+      run: |
+        mkdir -p icons
+        sudo apt-get update && sudo apt-get install -y imagemagick
+        # একটি সাধারণ গ্রিন কালারের ব্যাটারি থিম আইকন জেনারেট করবে
+        convert -size 56x56 xc:#00e676 -gravity center -pointsize 12 -fill black -draw "text 0,0 'BATT'" icons/icon-56.png
+        convert -size 112x112 xc:#00e676 -gravity center -pointsize 24 -fill black -draw "text 0,0 'BATT'" icons/icon-112.png
+
+    # পুরো প্রজেক্ট জিপ করা (ব্যতিক্রম: গিট ফাইল ও ওয়ার্কফ্লো বাদে)
+    - name: Zip Project files
+      run: |
+        zip -r battery-manager.zip . -x "*.git*" -x "*.github*"
+
+    # গিটহাব রিলিজে জিপ ফাইলটি আপলোড করা
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+          tag_name: v${{ github.run_number }}
+          name: Release v${{ github.run_number }}
+          files: battery-manager.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
