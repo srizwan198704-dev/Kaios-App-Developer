@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "name": "Battery Manager",
+  "description": "Monitor battery level, temperature, and set charge alarms.",
+  "type": "privileged",
+  "launch_path": "/index.html",
+  "icons": {
+    "56": "/icons/icon-56.png",
+    "112": "/icons/icon-112.png"
+  },
+  "developer": {
+    "name": "Your Name",
+    "url": "https://github.com/your-username"
+  },
+  "locales": {
+    "en-US": {
+      "name": "Battery Manager",
+      "description": "Monitor battery level, temperature, and set charge alarms."
+    }
+  },
+  "default_locale": "en-US",
+  "permissions": {
+    "audio-channel-alarm": {
+      "description": "Required to play alarm sound when full or limits reached"
+    }
+  }
+}
