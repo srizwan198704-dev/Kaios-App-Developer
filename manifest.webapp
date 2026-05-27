@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "2.0.0",
   "name": "Battery S2",
   "description": "Monitor battery level, temperature, and set charge alarms.",
   "type": "privileged",
@@ -21,7 +21,13 @@
   "default_locale": "en-US",
   "permissions": {
     "audio-channel-alarm": {
-      "description": "Required to play alarm sound when full or limits reached"
+      "description": "Required to play alarm sound when battery limits reached"
+    },
+    "battery": {
+      "description": "Required to read real-time battery level and charging status"
+    },
+    "systemXHR": {
+      "description": "Required for loading alarm audio from external source"
     }
   }
 }

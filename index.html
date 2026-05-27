@@ -9,38 +9,33 @@
 <body>
     <div id="app">
         <header>Battery Manager</header>
-
         <div id="content">
             <div class="card status-card">
                 <span id="battery-pct">--%</span>
                 <p id="charge-status">Checking...</p>
             </div>
-
             <div class="info-grid">
-                <div class="info-item">Temp: <span id="temp">35°C</span></div>
+                <div class="info-item">Temp: <span id="temp">--°C</span></div>
                 <div class="info-item">Time: <span id="time-left">--</span></div>
             </div>
-
             <div class="settings">
                 <h3>Settings (Set Limits)</h3>
                 <div class="setting-row focusable" id="set-max" data-type="max">
-                    Max Limit: <span id="max-val">98</span>%
+                    <span>Max Limit</span><span><span id="max-val">98</span>%</span>
                 </div>
                 <div class="setting-row focusable" id="set-min" data-type="min">
-                    Min Limit: <span id="min-val">20</span>%
+                    <span>Min Limit</span><span><span id="min-val">20</span>%</span>
                 </div>
             </div>
         </div>
-
         <div class="softkey">
-            <div id="softkey-left">Decrease</div>
-            <div id="softkey-center">SELECT</div>
-            <div id="softkey-right">Increase</div>
+            <div id="softkey-left">◄ Dec</div>
+            <div id="softkey-center">STOP</div>
+            <div id="softkey-right">Inc ►</div>
         </div>
     </div>
-    
-    <audio id="alarm-sound" src="https://actions.google.com/sounds/v1/alarms/digital_watch_alarm_long.ogg" loop></audio>
 
+    <audio id="alarm-sound" src="https://actions.google.com/sounds/v1/alarms/digital_watch_alarm_long.ogg" loop></audio>
     <script src="app.js"></script>
 </body>
 </html>

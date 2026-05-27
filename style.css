@@ -36,6 +36,7 @@ header {
     overflow-y: auto;
 }
 
+/* ব্যাটারি পার্সেন্ট কার্ড */
 .status-card {
     text-align: center;
     background: #222;
@@ -48,9 +49,16 @@ header {
 #battery-pct {
     font-size: 36px;
     font-weight: bold;
-    color: #00e676;
+    color: #00e676; /* app.js থেকে ডায়নামিক রঙ আসবে */
 }
 
+#charge-status {
+    font-size: 13px;
+    margin-top: 4px;
+    color: #aaa;
+}
+
+/* তথ্য গ্রিড */
 .info-grid {
     display: flex;
     justify-content: space-between;
@@ -64,37 +72,71 @@ header {
     width: 48%;
     text-align: center;
     font-size: 12px;
+    color: #bbb;
 }
 
+.info-item span {
+    color: #00e676; /* app.js থেকে ডায়নামিক রঙ আসবে */
+    font-weight: bold;
+}
+
+/* সেটিংস সেকশন */
 .settings h3 {
-    font-size: 12px;
-    color: #aaa;
-    margin-bottom: 5px;
+    font-size: 11px;
+    color: #777;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .setting-row {
-    padding: 8px;
+    padding: 8px 10px;
     background: #222;
     margin-bottom: 5px;
     border-radius: 4px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    border: 1px solid #333;
+    font-size: 13px;
 }
 
-/* KaiOS Focus/Navigation System */
+.setting-row span:last-child {
+    color: #00e676;
+    font-weight: bold;
+}
+
+/* KaiOS D-Pad ফোকাস স্টাইল */
 .setting-row.nav-focus {
     background-color: #00e676;
     color: #000;
     font-weight: bold;
+    border-color: #00e676;
 }
 
-/* Softkey styling */
+.setting-row.nav-focus span:last-child {
+    color: #000;
+}
+
+/* সফটকি বার */
 .softkey {
-    background-color: #222;
-    color: white;
+    background-color: #1a1a2e;
+    color: #ccc;
     display: flex;
     justify-content: space-between;
-    padding: 3px 5px;
+    align-items: center;
+    padding: 4px 8px;
     font-size: 11px;
     border-top: 1px solid #444;
+    min-height: 22px;
+}
+
+#softkey-center {
+    color: #00e676;
+    font-weight: bold;
+}
+
+#softkey-left,
+#softkey-right {
+    color: #aaa;
 }
