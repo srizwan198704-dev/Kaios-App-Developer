@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "name": "Battery Manager",
+  "name": "Battery S2",
   "description": "Monitor battery level, temperature, and set charge alarms.",
   "type": "privileged",
   "launch_path": "/index.html",
@@ -14,7 +14,7 @@
   },
   "locales": {
     "en-US": {
-      "name": "Battery Manager",
+      "name": "Battery S2",
       "description": "Monitor battery level, temperature, and set charge alarms."
     }
   },
