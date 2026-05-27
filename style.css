@@ -1,0 +1,100 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #111;
+    color: #fff;
+    font-size: 14px;
+    height: 320px;
+    width: 240px;
+    overflow: hidden;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+header {
+    background-color: #311b92;
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#content {
+    padding: 10px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.status-card {
+    text-align: center;
+    background: #222;
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid #333;
+    margin-bottom: 10px;
+}
+
+#battery-pct {
+    font-size: 36px;
+    font-weight: bold;
+    color: #00e676;
+}
+
+.info-grid {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.info-item {
+    background: #222;
+    padding: 8px;
+    border-radius: 5px;
+    width: 48%;
+    text-align: center;
+    font-size: 12px;
+}
+
+.settings h3 {
+    font-size: 12px;
+    color: #aaa;
+    margin-bottom: 5px;
+}
+
+.setting-row {
+    padding: 8px;
+    background: #222;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* KaiOS Focus/Navigation System */
+.setting-row.nav-focus {
+    background-color: #00e676;
+    color: #000;
+    font-weight: bold;
+}
+
+/* Softkey styling */
+.softkey {
+    background-color: #222;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 5px;
+    font-size: 11px;
+    border-top: 1px solid #444;
+}
