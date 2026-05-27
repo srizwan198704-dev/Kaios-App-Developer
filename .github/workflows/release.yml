@@ -8,30 +8,37 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # গিটহাব রিলিজ তৈরি করার জন্য এই পারমিশনটি অবশ্যই লাগবে
+    permissions:
+      contents: write
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    # আইকন ফোল্ডার ও আইকন অটোমেটিক তৈরি করার স্ক্রিপ্ট (ImageMagick দিয়ে)
+    # উবুন্টুর সিকিউরিটি পলিসি এড়াতে Node.js দিয়ে অটোমেটিক আইকন তৈরি
     - name: Auto-generate Icons
       run: |
         mkdir -p icons
-        sudo apt-get update && sudo apt-get install -y imagemagick
-        # একটি সাধারণ গ্রিন কালারের ব্যাটারি থিম আইকন জেনারেট করবে
-        convert -size 56x56 xc:#00e676 -gravity center -pointsize 12 -fill black -draw "text 0,0 'BATT'" icons/icon-56.png
-        convert -size 112x112 xc:#00e676 -gravity center -pointsize 24 -fill black -draw "text 0,0 'BATT'" icons/icon-112.png
+        cat << 'EOF' > generate-icons.js
+        const fs = require('fs');
+        const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="112" height="112" viewBox="0 0 112 112"><rect width="100%" height="100%" fill="#1a1a1a"/><rect x="26" y="36" width="60" height="40" rx="6" fill="none" stroke="#00e676" stroke-width="6"/><rect x="86" y="48" width="6" height="16" rx="2" fill="#00e676"/><rect x="34" y="44" width="30" height="24" fill="#00e676"/><text x="56" y="96" font-family="sans-serif" font-size="14" font-weight="bold" fill="#00e676" text-anchor="middle">BATT</text></svg>`;
+        fs.writeFileSync('icons/icon-56.png', svgContent);
+        fs.writeFileSync('icons/icon-112.png', svgContent);
+        EOF
+        node generate-icons.js
 
-    # পুরো প্রজেক্ট জিপ করা (ব্যতিক্রম: গিট ফাইল ও ওয়ার্কফ্লো বাদে)
+    # আপনার ম্যানুয়াল ফাইল এবং অটো-জেনারেটেড আইকন একসাথে জিপ করা
     - name: Zip Project files
       run: |
-        zip -r battery-manager.zip . -x "*.git*" -x "*.github*"
+        zip -r battery-manager.zip . -x "*.git*" -x "*.github*" -x "generate-icons.js"
 
     # গিটহাব রিলিজে জিপ ফাইলটি আপলোড করা
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
       with:
-          tag_name: v${{ github.run_number }}
-          name: Release v${{ github.run_number }}
+          tag_name: v1.0.${{ github.run_number }}
+          name: Release v1.0.${{ github.run_number }}
           files: battery-manager.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
